@@ -15,6 +15,7 @@ object PowerOfTwo extends App {
   }
 
   //input the number from user
+  print("Enter the power: ")
   var input = scala.io.StdIn.readInt()
 
   //print the table if the input is valid

@@ -12,6 +12,6 @@ object LeapYear extends App{
   }
 
   //Print a message accordingly
-  if(isLeapYear(year)) println("Year is leap. Extra 24 hours!! :D")
+  if(isLeapYear(year)) println("Year is leap. Extra 24 hours!! :)")
   else println("Year is not leap. You will have one less day :(")
 }

@@ -16,9 +16,8 @@ object FlipCoin extends App {
   }
 
   //Use the loop to toss the coin flipCount no. of times
-  var i = 0
   var numberOfHeads: Int = 0
-  for (i <- 1 to flipCount) {
+  for (_ <- 1 to flipCount) {
     numberOfHeads += coinFlip()
   }
   val numberOfTails: Int = flipCount - numberOfHeads

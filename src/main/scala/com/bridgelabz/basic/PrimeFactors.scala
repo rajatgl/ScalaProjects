@@ -13,6 +13,7 @@ object PrimeFactors extends App {
       if (input % i == 0)
         return false
     }
+
     true
   }
 

@@ -1,5 +1,6 @@
 package com.bridgelabz.logical
 
+import scala.annotation.tailrec
 import scala.util.Random
 
 object Gambler {
@@ -10,6 +11,7 @@ object Gambler {
    * @param returnParameters is the array: 1st element holds number of wins; 2nd element holds total gambles placed
    * @return True if he reached goal; False if he went broke
    */
+  @tailrec
   def gamble(stake: Int, goal: Int, returnParameters: Array[Int]): Boolean = {
 
     //base condition
@@ -37,7 +39,7 @@ object Gambler {
    *
    * @return Array ofDim 2: 1st element is stake placed; second element is the goal set by the gambler
    */
-  def getInputs():Array[Int] = {
+  def getInputs:Array[Int] = {
 
     val inputs = Array.ofDim[Int](2)
 
@@ -51,7 +53,7 @@ object Gambler {
   }
 
   def main(args: Array[String]): Unit = {
-    val inputs = getInputs()
+    val inputs = getInputs
     val winParameters = Array.ofDim[Int](2)
 
     if(gamble(inputs(0), inputs(1), winParameters)){

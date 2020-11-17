@@ -21,6 +21,13 @@ object Utilities {
     count
   }
 
+  def sizeOneDimLong(buffer: ArrayBuffer[Long]):Int = {
+    var count = 0
+    for(_ <- buffer)
+      count+=1
+    count
+  }
+
   def printObject(buffer : ArrayBuffer[Array[Int]]): Unit = {
     for(array<- buffer){
       for(element <- array){

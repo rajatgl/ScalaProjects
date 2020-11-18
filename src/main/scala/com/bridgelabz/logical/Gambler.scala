@@ -43,8 +43,8 @@ object Gambler {
 
     val inputs = Array.ofDim[Int](2)
 
-    println("Welcome Gambler!")
-    print("Enter Stake: ")
+    println()
+    print("\"Welcome Gambler!\"Enter Stake: ")
     inputs(0) = scala.io.StdIn.readInt()
     print("Enter Goal: ")
     inputs(1) = scala.io.StdIn.readInt()

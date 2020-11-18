@@ -22,7 +22,7 @@ object QuadraticRoots {
     print("Enter B: ")
     coeffs(1) = scala.io.StdIn.readInt()
     print("Enter C: ")
-    coeffs(1) = scala.io.StdIn.readInt()
+    coeffs(2) = scala.io.StdIn.readInt()
     coeffs
   }
 

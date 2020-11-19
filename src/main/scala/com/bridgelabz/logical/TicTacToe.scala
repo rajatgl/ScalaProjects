@@ -21,15 +21,28 @@ object TicTacToe {
   /**
    * make the user move to (x,y)
    */
-  @tailrec
   def playUser:Unit = {
     println("Your Turn..")
-    print("x: ")
-    val x = scala.io.StdIn.readInt()
-    print("y: ")
-    val y = scala.io.StdIn.readInt()
-    if(board(x)(y)=='-') {
-      board(x)(y)='X'
+    print("Enter the box number you want to place X at [1 to 9]: ")
+
+    var boxNumber:Int = 0
+    try {
+      boxNumber = scala.io.StdIn.readInt()
+      if(boxNumber < 1 || boxNumber > 9)
+        throw new Exception("Number not between 1 to 9. Please enter in this range.")
+    }
+    catch{
+      case e:Exception =>
+        println("Please enter in range 1 to 9 ONLY. Thank you! :)")
+        playUser
+        return
+    }
+
+    val rowPosition = (boxNumber - 1)/3
+    val colPosition = (boxNumber - 1)%3
+
+    if(board(rowPosition)(colPosition)=='-') {
+      board(rowPosition)(colPosition)='X'
       printBoard
     } else {
       println("Entered position isn't empty")
@@ -56,7 +69,7 @@ object TicTacToe {
    * To check each row, column & diagonal
    * @return 'X' if User won; 'O' if Computer won; '-' if draw; ' ' if game not over
    */
-  def isGameOver(): Char ={
+  def isGameOver: Char ={
 
     //Check all rows
     for(row<-board.indices) {
@@ -96,8 +109,8 @@ object TicTacToe {
 
     if(startCharacter != '-') {
       diagDone = true;
-      for (i <- 0 until 3) {
-        if (board(i)(i) != startCharacter) {
+      for (index <- 0 until 3) {
+        if (board(index)(index) != startCharacter) {
           diagDone = false
         }
       }
@@ -141,9 +154,9 @@ object TicTacToe {
   def main(args: Array[String]): Unit = {
     printBoard
     var gameParameter:Char = ' '
-    while({gameParameter = isGameOver(); gameParameter} == ' '){
+    while({gameParameter = isGameOver; gameParameter} == ' '){
       playUser
-      if(isGameOver() == ' ')
+      if(isGameOver == ' ')
         playComputer
     }
 

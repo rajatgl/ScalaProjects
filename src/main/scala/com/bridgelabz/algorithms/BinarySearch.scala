@@ -1,5 +1,9 @@
 package com.bridgelabz.algorithms
 
+import java.io.FileNotFoundException
+
+import com.bridgelabz.utils.Utilities.readFile
+
 import scala.annotation.tailrec
 import scala.reflect.io.File
 import scala.util.Sorting
@@ -29,17 +33,6 @@ object BinarySearch {
 
   /**
    *
-   * @param filePath address of the file to be read
-   * @return Array for values read into the buffer
-   */
-  def readFile(filePath: String): Array[String] = {
-    val file = File(filePath)
-    val reader = file.bufferedReader()
-    reader.readLine().split(",").map(_.trim)
-  }
-
-  /**
-   *
    * @param wordList Array to be sorted
    */
   def sort(wordList: Array[String]) = {
@@ -47,17 +40,22 @@ object BinarySearch {
   }
 
   def main(args: Array[String]): Unit = {
-    val wordList = readFile("./assets/WordList.txt")
-    sort(wordList)
+    try {
+      val wordList = readFile("./assets/WordList.txt")
+      sort(wordList)
 
-    println(wordList.mkString("File contains: ", ",", ""))
+      println(wordList.mkString("File contains: ", ",", ""))
 
-    println("\nEnter a word you'd like to search from the file:")
-    val position = binarySearch(wordList, 0, wordList.length - 1, scala.io.StdIn.readLine().trim)
+      println("\nEnter a word you'd like to search from the file:")
+      val position = binarySearch(wordList, 0, wordList.length - 1, scala.io.StdIn.readLine().trim)
 
-    if (position == -1)
-      println("We could not find that word. Sorry!")
-    else
-      println("We found the word! It was at position: " + (position + 1))
+      if (position == -1)
+        println("We could not find that word. Sorry!")
+      else
+        println("We found the word! It was at position: " + (position + 1))
+    }
+    catch{
+      case e : FileNotFoundException => println("That file was not found. Here's the error: " + e.getClass.toString)
+    }
   }
 }

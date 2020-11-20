@@ -19,7 +19,7 @@ object InsertionSort {
    *
    * @param wordList array of values to be sorted
    */
-  def insertionSort[A:ClassTag](wordList: Array[String])(implicit variable:A => Ordered[A]): Unit = {
+  def insertionSort[A:ClassTag](wordList: Array[A])(implicit variable:A => Ordered[A]): Unit = {
     //iterating through all the wordIndices except first one
     for (wordIndex <- 1 until wordList.length) {
       var currentIndex = wordIndex
@@ -45,9 +45,16 @@ object InsertionSort {
   def main(args: Array[String]): Unit = {
     try {
       val wordList = readFile("./assets/WordList.txt")
+      val numberList = readFile("./assets/NumberList.txt")
+
       println(wordList.mkString("File contains: ", ",", ""))
       insertionSort[String](wordList)
       println(wordList.mkString("\nAfter sorting: ", ",", "."))
+
+      println(numberList.mkString("File contains: ", ",", ""))
+      val numberArray = numberList.map(_.trim.toInt)
+      insertionSort[Int](numberArray)
+      println(numberArray.mkString("\nAfter sorting: ", ",", "."))
     }
     catch{
       case e : FileNotFoundException => println("That file was not found. Here's the error: " + e.getClass.toString)

@@ -5,6 +5,7 @@ import java.io.FileNotFoundException
 import com.bridgelabz.algorithms.BinarySearch.{binarySearch, sort}
 import com.bridgelabz.utils.Utilities.readFile
 
+import scala.reflect.ClassTag
 import scala.util.control.Breaks
 import scala.util.control.Breaks.break
 
@@ -18,7 +19,7 @@ object InsertionSort {
    *
    * @param wordList array of values to be sorted
    */
-  def insertionSort(wordList: Array[String]): Unit = {
+  def insertionSort[A:ClassTag](wordList: Array[String])(implicit variable:A => Ordered[A]): Unit = {
     //iterating through all the wordIndices except first one
     for (wordIndex <- 1 until wordList.length) {
       var currentIndex = wordIndex
@@ -45,7 +46,7 @@ object InsertionSort {
     try {
       val wordList = readFile("./assets/WordList.txt")
       println(wordList.mkString("File contains: ", ",", ""))
-      insertionSort(wordList)
+      insertionSort[String](wordList)
       println(wordList.mkString("\nAfter sorting: ", ",", "."))
     }
     catch{
